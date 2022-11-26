@@ -1,0 +1,18 @@
+// b1=1, b2=2, b(n)=b(n-1)/b(n-2)+1. Вывести первые n членов последовательности
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+	double b1 = 1, b2 = 2, b;
+	int n;
+	cout << "n = ";
+	cin >> n;
+	cout << "b1 = " << b1 << endl << "b2 = " << b2 << endl;
+	for (int i = 3; i <= n; i++) {
+		b = b2 / (b1 + 1);
+		cout << "b" << i << " = " << fixed << setprecision(3) << b << endl;
+		b1 = b2;
+		b2 = b;
+	}
+	return 0;
+}
