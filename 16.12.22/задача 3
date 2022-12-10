@@ -13,5 +13,6 @@ int main() {
 			cout << i << endl;
 		}
 	}
+	delete[] a;
 	return 0;
 }
