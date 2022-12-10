@@ -21,5 +21,6 @@ int main() {
 	for (int i = n; i >= 1; i--) {
 		cout << a[i] << " ";
 	}
+	delete[] a;
 	return 0;
 }
