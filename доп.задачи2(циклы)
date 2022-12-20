@@ -1,0 +1,44 @@
+//вывести все двузначные числа с нечетной суммой цифр
+#include <iostream>
+using namespace std;
+int main() {
+	for (int i = 10; i < 100; i++) {
+		if ((i % 10 + i / 10) % 2 != 0)
+			cout << i << " ";
+	}
+}
+
+//Игра «Ним»: задаётся куча из N камней, игрок берёт на каждом шаге xi камней(проверять корректность хода), остановиться, когда камней не останется.
+#include <iostream>
+using namespace std;
+int main() {
+	setlocale(LC_ALL, "Russian");
+	int n, x;
+	cout << "Введите количество камней: ";
+	cin >> n;
+	cout << "Введите ход: ";
+	cin >> x;
+	while (n >= x) {
+		n = n - x;
+	}
+	cout << "Остаток камней: " << n;
+
+}
+
+//Найти сумму и произведение положительных чётных из N введённых чисел.
+#include <iostream>
+using namespace std;
+int main() {
+	setlocale(LC_ALL, "Russian");
+	int n, x, sum=0, pr=1;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> x;
+		if ((x % 2 == 0) && (x > 0)) {
+			sum += x;
+			pr *= x;
+		}
+	}
+	cout << sum << " " << pr;
+	return 0;
+}
