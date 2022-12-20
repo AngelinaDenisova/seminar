@@ -1,0 +1,55 @@
+//Создать массив из N элементов. Вывести все отрицательные в обратном порядке.
+#include <iostream>
+using namespace std;
+int main() {
+	int n;
+	cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (int i = n-1; i >= 0; i--) {
+		if (a[i] < 0)
+			cout << a[i] << " ";
+	}
+	delete[] a;
+	return 0;
+}
+
+//Создать массив из N элементов. Заменить все кратные 7 последним элементом.
+#include <iostream>
+using namespace std;
+int main() {
+	int n;
+	cin >> n;
+	int* a = new int[n];
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	for (int i = 0; i < n; i++) {
+		if (a[i] % 7 == 0)
+			a[i] = a[n-1];
+	}
+	for (int i = 0; i < n; i++)
+		cout << a[i] << " ";
+	delete[] a;
+	return 0;
+}
+
+//Создать массив из N вещественных чисел. Вывести индексы тех элементов, которые отличаются от 0 не более, чем на 10-3
+#include <iostream>
+using namespace std;
+int main() {
+	int n;
+	cin >> n;
+	double e = 0.001;
+	double* a = new double[n];
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	for (int i = 0; i < n; i++) {
+		if (abs(a[i]) <= e)
+			cout << i << " ";
+	}
+	delete[] a;
+	return 0;
+}
+
