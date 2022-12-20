@@ -1,0 +1,58 @@
+
+//1. Проверить, попадает ли точка в область
+#include <iostream>
+using namespace std;
+int main() {
+	int x, y;
+	cout << "Vvedite x and y: ";
+	cin >> x >> y;
+	if ((x - 1) * (x - 1) + y * y <= 1)
+		cout << "Yes";
+	else
+		cout << "No";
+	return 0;
+}
+
+//2.С помощью тернарой операции определить, одинакова ли четность двух введенных чисел
+#include <iostream>
+using namespace std;
+int main() {
+	int x, y;
+	cout << "Vvedite 2 chisla: ";
+	cin >> x >> y;
+	cout << (x % 2 == y % 2) ? 1 : 0;
+	return 0;
+}
+
+//3.по номеру ноты в до мажорной гамме выдать её название
+#include <iostream>
+using namespace std;
+int main() {
+	setlocale(LC_ALL, "Russian");
+	int x;
+	cout << "Введите номер ноты: ";
+	cin >> x;
+	switch (x) {
+	case 1:
+		cout << "До";
+		break;
+	case 2:
+		cout << "Ре";
+		break;
+	case 3:
+		cout << "Ми";
+		break;
+	case 4:
+		cout << "Фа";
+		break;
+	case 5:
+		cout << "Соль";
+		break;
+	case 6:
+		cout << "Ля";
+		break;
+	case 7:
+		cout << "Си";
+		break;
+	}
+}
