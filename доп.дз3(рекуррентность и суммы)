@@ -47,3 +47,20 @@ int main() {
 
 
 //бесконечная сумма
+#include <iostream>  
+#include <cmath>  
+using namespace std;  
+int main() {  
+int i = 1;  
+double e;  
+cin >> e;  
+double a = sin(i) / 2.;  
+double s = 0;  
+while (abs(a) >= e) {  
+ s += a;  
+ i++;  
+ a = sin(i) / pow(2, i);  
+}  
+cout << s;  
+return 0;  
+}  
