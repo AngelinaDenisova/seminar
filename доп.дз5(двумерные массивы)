@@ -1,0 +1,88 @@
+//Создать двумерный массив из N строк и M столбцов целых чисел. Вывести сначала чётные (по индексам) столбцы, а затем нечётные.
+#include <iostream>
+using namespace std;
+int main(){
+   int n, m; 
+   cin >> n >> m;
+   int **a = new int *[n];
+   for(int i=0;i<n;i++)
+       a[i] = new int [m];
+   for(int i = 0; i<n; i++)
+       for(int j =0; j<m; j++)
+         cin>>a[i][j];
+   for(int j = 0; j<m; j+=2) {
+       for(int i = 0; i<n; i++)
+               cout<<a[i][j]<<' ';
+       cout<<endl;
+   }
+   for(int j = 1; j<m; j+=2) {
+       for(int i = 0; i<n; i++;
+           cout<<a[i][j]<<' ';
+       cout<<endl;  
+   }
+   for(int i = 0; i<n ; i++)
+       delete [] a[i];
+   delete [] a;
+}  
+
+// Создать двумерный массив из N строк и M столбцов целых чисел. Подсчитать
+количество и сумму элементов, которые меньше первого в своей строке.
+#include <iostream>  
+
+using namespace std;  
+int main() {  
+int n, m; 
+cin >> n >> m;  
+int** a = new int* [n];  
+for (int i = 0; i < n; i++)  
+ a[i] = new int[m];  
+for (int i = 0; i < n; i++)  
+ for (int j = 0; j < m; j++)  
+  cin >> a[i][j];  
+int count = 0, sum = 0;  
+for (int i = 0; i < n; i++)  
+ for (int j = 0; j < m; j++)  
+  if (a[i][0] > a[i][j]) {  
+   sum += a[i][j];  
+   count++;  
+  }  
+cout << count << ' ' << sum;  
+for (int i = 0; i < n; i++)  
+ delete[] a[i];  
+delete[]a;  
+}  
+
+//Создать двумерный массив из N строк и M столбцов целых чисел. Удалить столбец с
+заданным номером, если номер корректен, иначе вывести сообщение об ошибке.
+#include <iostream>  
+using namespace std;  
+int main() {  
+int n, m, k; 
+cin >> n >> m >> k; 
+if (k > m) {  
+ cout << "Error!";  
+}  
+else {  
+ int** a = new int* [n];  
+ for (int i = 0; i < n; i++)  
+  a[i] = new int[m];  
+ for (int i = 0; i < n; i++)  
+  for (int j = 0; j < m; j++)  
+   cin >> a[i][j];  
+ for (int j = 0; j < m; j++){  
+  if (j == k) {  
+   for (int p = j; p < m - 1; p++)  
+    for(int i = 0;i<n;i++)  
+     a[i][p] = a[i][p + 1];  
+   m--;  
+   j++;  
+  }  
+ }  
+ for (int i = 0; i < n; i++, cout << endl)  
+  for (int j = 0; j < m; j++)  
+   cout << a[i][j] << ' ';  
+ for (int i = 0; i < n; i++)  
+  delete[] a[i];  
+ delete[]a;  
+}  
+}
