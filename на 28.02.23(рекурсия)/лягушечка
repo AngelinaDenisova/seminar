@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int pos(int p1, int x) {
+    if (p1 > x)
+        return 0;
+    if (p1 == x)
+        return 1;
+    if (p1 < x)
+        return pos(p1 + 3, x) + pos(p1 + 5, x);
+}
+
+int main()
+{
+    int x, p1=0;
+    cin >> x;
+    cout << pos(p1, x);
+    return 0;
+}
