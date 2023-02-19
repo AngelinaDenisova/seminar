@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int evk(int a, int b) {
+    if (b == 0)
+        return a;
+    return evk(b, a % b);
+}
+
+int main()
+{
+    int a, b;
+    cin >> a >> b;
+    cout << evk(a, b);
+    return 0;
+}
