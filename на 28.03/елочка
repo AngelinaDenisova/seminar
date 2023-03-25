@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+void drawOneLine(int nspaces, int nstars)
+{
+    int i; /* номер печатаемой звездочки, счетчик */
+    /* он же - номер печатаемого пробела   */
+
+    for (i = 0; i < nspaces; i++)
+        putchar(' ');
+    for (i = 0; i < nstars; i++)
+        putchar('*');
+    putchar('\n');
+}
+//функция, рисующая один блок елки
+void block_tree(int LINES, int offset)
+{
+    for (int nline = 1; nline <= LINES; nline++)
+        drawOneLine(offset - nline, nline * 2 - 1);
+}
+// рекурсивная функция, рисующее елку
+void tree(int i, int n, int offset)
+{
+    if (i == n)
+        return;
+    else {
+        block_tree(i + 1, offset);
+    }
+    tree(i + 1, n, offset);
+}
+int main()
+{
+    int n;
+    cout << " n =";
+    cin >> n;
+    tree(1, n + 1, n+2);
+    return 0;
+}
