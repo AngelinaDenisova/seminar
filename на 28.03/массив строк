@@ -1,0 +1,36 @@
+//Данный код реализует алгоритм сортировки вставками для массива структур StringWithIndex, содержащих строку и ее индекс. 
+//В функции insertionSort происходит сортировка по длине строк и индексу. В функции main создается массив из элементов типа StringWithIndex и заполняется значениями. 
+//Затем вызывается функция insertionSort для сортировки массива. В конце происходит вывод отсортированного массива строк.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct StringWithIndex {
+    string str;
+    int index;
+};
+
+void insertionSort(StringWithIndex arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        StringWithIndex key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && (arr[j].str.length() > key.str.length() || (arr[j].str.length() == key.str.length() && arr[j].index > key.index))) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    StringWithIndex arr[n];
+    for (int i=0;i<n;i++)
+        cin >> StringWithIndex arr[i];
+    insertionSort(arr, n);
+    for (int i = 0; i < n; i++) {
+        cout << arr[i].str << " ";
+    }
+    return 0;
