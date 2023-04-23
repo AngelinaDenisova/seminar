@@ -1,0 +1,7 @@
+List(const List& other) {
+        Item* current = other.first;
+        while (current != nullptr) {
+            add(current->inf);
+            current = current->next;
+        }
+    }
