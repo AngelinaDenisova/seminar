@@ -1,0 +1,12 @@
+void clear()
+{
+    Item* current = first;
+    while(current != nullptr)
+    {
+        Item* temp = current;
+        current = current->next;
+        delete temp;
+    }
+    first = nullptr;
+    last = nullptr;
+}
