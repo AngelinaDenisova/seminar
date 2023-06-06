@@ -1,0 +1,38 @@
+// Найти букву (без учёта регистра), на которую начинается наибольшее количество слов, записанных в одну строку через пробел (словом считаем любую
+// непустую последовательность символов).
+#include <iostream>
+#include <string>
+#include <map>
+#include <algorithm>
+using namespace std;
+int main() {
+    setlocale(LC_ALL, "Russian");
+    string input;
+    getline(cin, input);
+    transform(input.begin(), input.end(), input.begin(), ::tolower); //приводим всю строку к нижнему регистру
+    map<char, int> wordCount;
+    int maxCount = 0;
+    char maxChar = ' ';
+    for (int i = 0; i < input.length(); i++) {
+        if (input[i] == ' ') {
+            continue;
+        }
+        int count = 0;
+        char currentChar = input[i];
+        while (i < input.length() && input[i] != ' ') {
+            count++;
+            i++;
+        }
+        if (count > 0) {
+            wordCount[currentChar] += 1;
+        }
+        if (wordCount[currentChar] > maxCount) {
+            maxCount = wordCount[currentChar];
+            maxChar = currentChar;
+        }
+    }
+    cout << "Буква, на которую начинается наибольшее количество слов: " << maxChar << endl;
+    cout << "Количество слов, начинающихся на эту букву: " << maxCount << endl;
+
+    return 0;
+}
