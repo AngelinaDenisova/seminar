@@ -1,0 +1,59 @@
+ //Во входном файле задана информация о студентах: фамилия, имя и три оценки
+//в виде набранных баллов (0-100). Вывести эти данные в выходной файл в том же
+//формате, но в отсортированном порядке. Сортировать по уменьшению количества
+//зачётов (зачёт = 65+ баллов), при равенстве по фамилии в алфавитном порядке,
+//при равенстве сохранить исходный порядок.
+
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+struct Student {
+string group, surname, name, patronymic;
+vector <int> grades;
+};
+
+bool compare(Student s1, Student s2) {
+    int pass1 = (s1.grades[1] + s1.grades[2] + s1.grades[3] >= 195) ? 1 : 0;
+    int pass2 = (s2.grades[1] + s2.grades[2] + s2.grades[3] >= 195) ? 1 : 0;
+    
+    if (pass1 == pass2) {
+        if (s1.surname == s2.surname) {
+            return s1.name < s2.name;
+        }
+        return s1.surname < s2.surname;
+    }
+    return pass1 > pass2;
+}
+
+int main() {
+ifstream input_file("input.txt");
+ofstream output_file("output.txt");
+vector<Student> students;
+string surname, name, patronymic;
+int grade;
+while (input_file >> surname >> name >> patronymic) {
+    Student student;
+    student.surname = surname;
+    student.name = name;
+    student.patronymic = patronymic;
+    for (int i = 0; i < 3; i++) {
+        input_file >> grade;
+        student.grades.push_back(grade);
+    }
+    students.push_back(student);
+}
+sort(students.begin(), students.end(), compare);
+for (Student student : students) {
+    output_file << student.surname << " " << student.name << " " << student.patronymic << " ";
+    for (int grade : student.grades) {
+        output_file << grade << " ";
+    }
+    output_file << endl;
+}
+
+input_file.close();
+output_file.close();
+return 0;
+}
