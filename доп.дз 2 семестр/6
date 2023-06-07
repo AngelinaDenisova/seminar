@@ -1,0 +1,72 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+vector<string> split(string str) {
+    vector<string> words;
+    stringstream ss(str);
+    string word;
+    while (ss >> word) {
+        words.push_back(word);
+    }
+    return words;
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    string str1, str2;
+    getline(cin, str1);
+    getline(cin, str2);
+
+    vector<string> words1 = split(str1);
+    vector<string> words2 = split(str2);
+
+    vector<string> common_words;
+    vector<string> unique_words;
+
+    for (string word1 : words1) {
+        transform(word1.begin(), word1.end(), word1.begin(), ::tolower);
+        bool found = false;
+        for (string word2 : words2) {
+            transform(word2.begin(), word2.end(), word2.begin(), ::tolower);
+            if (word1 == word2) {
+                common_words.push_back(word1);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            unique_words.push_back(word1);
+        }
+    }
+
+    for (string word2 : words2) {
+        transform(word2.begin(), word2.end(), word2.begin(), ::tolower);
+        bool found = false;
+        for (string word1 : words1) {
+            transform(word1.begin(), word1.end(), word1.begin(), ::tolower);
+            if (word2 == word1) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            unique_words.push_back(word2);
+        }
+    }
+
+    cout << "Встречается в обеих строках: ";
+    for (string word : common_words) {
+        cout << word << " ";
+    }
+    cout << endl;
+
+    cout << "Есть только в одной строке: ";
+    for (string word : unique_words) {
+        cout << word << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
