@@ -1,0 +1,55 @@
+//Используя стеки и очереди, прочитайте n чисел, затем выведите сначала
+//простые в направлении от последнего к первому, а затем полные квадраты в том
+//порядке, в каком числа вводились. Также выведите количество чисел, не
+//являющихся ни простыми, ни полными квадратами.
+
+#include<iostream>
+#include<stack>
+#include<queue>
+#include<cmath>
+
+using namespace std;
+
+bool isPrime(int n){
+    if(n<=1) return false;
+    for(int i=2;i<=sqrt(n);i++){
+        if(n%i==0) return false;
+    }
+    return true;
+}
+
+bool isPerfectSquare(int n){
+    int x=sqrt(n);
+    return x*x==n;
+}
+
+int main(){
+    int n,num;
+    queue<int> q;
+    stack<int> s1,s2;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>num;
+        q.push(num);
+        if(isPrime(num)) s1.push(num);
+        if(isPerfectSquare(num)) s2.push(num);
+    }
+    while(!s1.empty()){
+        cout<<s1.top()<<" ";
+        s1.pop();
+    }
+    cout<< endl;
+    while(!s2.empty()){
+        cout<<s2.top()<<" ";
+        s2.pop();
+    }
+     cout << endl;
+    int count=0;
+    while(!q.empty()){
+        int x=q.front();
+        q.pop();
+        if(!isPrime(x) && !isPerfectSquare(x)) count++;
+    }
+    cout<<endl<<count<<endl;
+    return 0;
+}
